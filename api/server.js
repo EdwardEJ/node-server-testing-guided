@@ -1,21 +1,25 @@
-const express = require("express");
+const express = require('express');
 
-const Hobbits = require("../hobbits/hobbitsModel.js");
+const Hobbits = require('../hobbits/hobbitsModel.js');
 
 const server = express();
 
 server.use(express.json());
 
-server.get("/", (req, res) => {
-  res.status(200).json({ api: "up" });
+//returns http 200
+//returns json
+//the body has an api property and the value is 'up'
+
+server.get('/', (req, res) => {
+  res.status(200).json({ api: 'up' });
 });
 
-server.get("/hobbits", (req, res) => {
+server.get('/hobbits', (req, res) => {
   Hobbits.getAll()
-    .then(hobbits => {
+    .then((hobbits) => {
       res.status(200).json(hobbits);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json(error);
     });
 });
